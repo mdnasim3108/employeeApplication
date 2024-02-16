@@ -21,7 +21,7 @@ public class EmployeeService {
 	
 	
 	public  void addEmployeeWithAdress(employeeAddress ea) {
-		if(checkIfEmployeeExist(ea.getId())) throw new UserAlreadyExistException("user already exist!");
+	
 		employeeInfosWithAdress.add(ea);
 		
 	}

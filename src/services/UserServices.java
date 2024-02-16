@@ -15,9 +15,9 @@ public class UserServices {
 		adminList.add(new Admin(3,"raj","123456","admin_view"));
 
 	}
-        public Admin authenticateAdmin(String name){
+        public Admin authenticateAdmin(String name,String password){
 		boolean flag=checkIfuserExist(name);
-		if(flag){
+		if(flag && findAdmin(name).getAdminPassword().equals(password)){
             return findAdmin(name);
 		}
         return null;
@@ -25,7 +25,7 @@ public class UserServices {
 
 	public Admin findAdmin(String name){
         for(Admin admin:adminList){
-            if(name.equals(name)) return admin;
+            if(admin.getAdminName().equals(name)) return admin;
         }
         return null;
     }
