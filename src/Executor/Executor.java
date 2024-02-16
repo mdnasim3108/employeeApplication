@@ -21,7 +21,6 @@ public class Executor {
     EmployeeService emp=new EmployeeService();
     UserServices user= new UserServices();
     employeeAddress temp2=null;
-    Employee temp1=null;
     Scanner input=new Scanner(System.in);
     Employee e1=new Employee(1, "nasim", 1000, "onebill", "GCT");
 	Employee e2=new Employee(2, "nishanth", 2000, "onebill", "CIT");
@@ -55,7 +54,7 @@ public class Executor {
  
     		System.out.println("1) Add Employee");
     	    System.out.println("2) Update Employee");
-    	    System.out.println("3) View Employee by Id");
+    	    System.out.println("3) View Employee");
     	    System.out.println("4) All Employee");
     	    System.out.println("5)Sort Employee");
     	    int option=Integer.parseInt(input.nextLine());
@@ -64,7 +63,7 @@ public class Executor {
                 System.out.println("Enter Employee ID");
                 int empID=Integer.parseInt(input.nextLine());
                 try {
-                	if(emp.checkIfEmployeeExist(empID)) {
+                	if(emp.checkIfEmployeeExistById(empID)) {
                 		throw new UserAlreadyExistException("user already exist!");
                 		
                 	}
@@ -145,7 +144,7 @@ public class Executor {
         	    
 	                
         	    case 3:
-        	    	System.out.println("Enter Employee current company");
+        	    	
 	                String eCurCompany=input.nextLine();
 	                Employee employee3 = emp.viewEmployee(id);
 	                employee3.setCurrCompany(eCurCompany);
@@ -232,13 +231,33 @@ public class Executor {
                 break;
 
             case 3:
-            	System.out.println("ether the employee id");
-            	int empId=Integer.parseInt(input.nextLine());
-            	employeeAddress ea=emp.viewEmployee(empId);
-            	if(ea!=null)
-                	System.out.println(ea.toString());
-                	else
-                		System.out.println("Employe does not exist");
+            	System.out.println("1.)search by name");
+    	    	System.out.println("2.)search by id");
+    	    	switch(input.nextLine()) {
+    	    	case "1":
+    	    		System.out.println("enter the employee name");
+                	String empNm=input.nextLine();
+                	employeeAddress ea=emp.viewEmployee(empNm);
+                	if(ea!=null)
+                    	System.out.println(ea.toString());
+                    else
+                    	System.out.println("Employe does not exist");
+                	break;
+    	    	
+    	    	case "2":
+    	    	
+    	    		System.out.println("enter the employee id");
+                	int empId=Integer.parseInt(input.nextLine());
+                	employeeAddress ea4=emp.viewEmployee(empId);
+                	if(ea4!=null)
+                    System.out.println(ea4.toString());
+                    else
+                    System.out.println("Employe does not exist");
+                	break;
+    	    	
+            	default:
+            		System.out.println("invalid option");
+    	    	}
             	
                 break;
 
