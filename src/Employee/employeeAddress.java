@@ -19,4 +19,9 @@ public class employeeAddress extends Employee {
 			this.pincode = pincode;
 	}
 
+	public String toString(){
+
+		return this.getName()+" "+this.getId()+" "+this.getSalary()+" "+this.getCurrCompany()+" "+this.getPrevCompany()+" "+doorNo+" "+city+" "+Street+" "+country+" "+pincode;
+	}
+
 }

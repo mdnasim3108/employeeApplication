@@ -8,7 +8,6 @@ public class Employee {
 	private String currCompany;
 	private String PrevCompany;
 	public Employee(int id, String name, int salary, String currCompany, String prevCompany) {
-		super();
 		this.id = id;
 		this.name = name;
 		this.salary = salary;
@@ -39,6 +38,7 @@ public class Employee {
 	public String getName() {
 		return name;
 	}
+	
 
 	
 
