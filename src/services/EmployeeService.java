@@ -20,15 +20,47 @@ public class EmployeeService {
 
 	LinkedList<employeeAddress> employeeInfosWithAdress=new LinkedList<>();
 	
-	public void addEmployeeWithAdress(employeeAddress ea) {
-		employeeInfosWithAdress.add(ea1);
-		employeeInfosWithAdress.add(ea2);
-		employeeInfosWithAdress.add(ea);
-	}
 
-	public void showEmployees(){
+	
+
+	
+
+	
+	public  void addEmployeeWithAdress(employeeAddress ea) {
+		employeeInfosWithAdress.add(ea);
+		
+	}
+	
+	
+
+	public  void showEmployees(){
 		for(employeeAddress emp:employeeInfosWithAdress) 
 		System.out.println(emp.toString());
+	}
+	
+	
+	
+	public boolean checkIfEmployeeExist(int id) {
+		for(employeeAddress ea: employeeInfosWithAdress) {
+			if(id==ea.getId()) return true;
+		}
+		return false;
+	}
+	
+	public employeeAddress viewEmployee(int id) {
+			boolean flag=checkIfEmployeeExist(id);
+			if(flag) {
+				for(employeeAddress ea:employeeInfosWithAdress) {
+					if(id==ea.getId()) return ea;
+				}
+			}
+			return null;
+	}
+	
+	public void sortEmployeeById() {
+		Comparator<employeeAddress> sortById=Comparator.comparingInt(employeeAddress::getId);
+		Collections.sort(employeeInfosWithAdress,sortById);
+		showEmployees();
 	}
 
 	
