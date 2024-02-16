@@ -157,8 +157,8 @@ public class Executor {
 	                
         	    case 2:
         	    	System.out.println("Enter Employee current company");
-        	    case 3:
-        	    	
+        	    
+        	
 	                String eCurCompany=input.nextLine();
 	                Employee employee3 = emp.viewEmployee(id);
 	                employee3.setCurrCompany(eCurCompany);
