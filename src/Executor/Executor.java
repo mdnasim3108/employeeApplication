@@ -65,7 +65,7 @@ public class Executor {
  
     		System.out.println("1) Add Employee");
     	    System.out.println("2) Update Employee");
-    	    System.out.println("3) View Employee by Id");
+    	    System.out.println("3) View Employee");
     	    System.out.println("4) All Employee");
     	    System.out.println("5)Sort Employee");
     	    
@@ -76,7 +76,7 @@ public class Executor {
                 System.out.println("Enter Employee ID");
                 int empID=Integer.parseInt(input.nextLine());
                 try {
-                	if(emp.checkIfEmployeeExist(empID)) {
+                	if(emp.checkIfEmployeeExistById(empID)) {
                 		throw new UserAlreadyExistException("user already exist!");
                 		
                 	}
@@ -157,6 +157,8 @@ public class Executor {
 	                
         	    case 2:
         	    	System.out.println("Enter Employee current company");
+        	    case 3:
+        	    	
 	                String eCurCompany=input.nextLine();
 	                Employee employee3 = emp.viewEmployee(id);
 	                employee3.setCurrCompany(eCurCompany);
@@ -243,24 +245,33 @@ public class Executor {
                 break;
 
             case 3:
-            	System.out.println("ether the employee id");
-            	int empId=Integer.parseInt(input.nextLine());
-            	employeeAddress ea=emp.viewEmployee(empId);
-            	if(ea!=null) {
-            		System.out.println("name "+ea.getName());
-    				System.out.println("id: "+ea.getId());
-    				System.out.println("salary :"+ea.getSalary());
-    				System.out.println("company :"+ea.getCurrCompany());
-    				System.out.println("previous company: "+ea.getPrevCompany());
-    				System.out.println("doorno: "+ea.getDoorNo());
-    				System.out.println("Street: "+ea.getStreet());
-    				System.out.println("State: "+ea.getState());
-    				System.out.println("City "+ea.getCity());
-    				System.out.println("Country "+ea.getCountry());
-    				System.out.println("Pincode "+ea.getPincode());
-            	}
-    			else
-                		System.out.println("Employe does not exist");
+            	System.out.println("1.)search by name");
+    	    	System.out.println("2.)search by id");
+    	    	switch(input.nextLine()) {
+    	    	case "1":
+    	    		System.out.println("enter the employee name");
+                	String empNm=input.nextLine();
+                	employeeAddress ea=emp.viewEmployee(empNm);
+                	if(ea!=null)
+                    	System.out.println(ea.toString());
+                    else
+                    	System.out.println("Employe does not exist");
+                	break;
+    	    	
+    	    	case "2":
+    	    	
+    	    		System.out.println("enter the employee id");
+                	int empId=Integer.parseInt(input.nextLine());
+                	employeeAddress ea4=emp.viewEmployee(empId);
+                	if(ea4!=null)
+                    System.out.println(ea4.toString());
+                    else
+                    System.out.println("Employe does not exist");
+                	break;
+    	    	
+            	default:
+            		System.out.println("invalid option");
+    	    	}
             	
                 break;
 

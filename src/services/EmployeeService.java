@@ -18,7 +18,7 @@ public class EmployeeService {
 	public LinkedList<employeeAddress> employeeInfosWithAdress=new LinkedList<>();
 	
 
-	
+
 	
 	public  void addEmployeeWithAdress(employeeAddress ea) {
 	
@@ -51,16 +51,22 @@ public class EmployeeService {
 	
 	
 	
-	
-	public boolean checkIfEmployeeExist(int id) {
+	public boolean checkIfEmployeeExistById(int id) {
 		for(employeeAddress ea: employeeInfosWithAdress) {
 			if(id==ea.getId()) return true;
 		}
 		return false;
 	}
 	
+	public boolean checkIfEmployeeExistByName(String name) {
+		for(employeeAddress ea: employeeInfosWithAdress) {
+			if(name.equals(ea.getName())) return true;
+		}
+		return false;
+	}
+	
 	public employeeAddress viewEmployee(int id) {
-			boolean flag=checkIfEmployeeExist(id);
+			boolean flag=checkIfEmployeeExistById(id);
 			if(flag) {
 				for(employeeAddress ea:employeeInfosWithAdress) {
 					if(id==ea.getId()) return ea;
@@ -68,6 +74,15 @@ public class EmployeeService {
 			}
 			return null;
 	}
+	public employeeAddress viewEmployee(String name) {
+		boolean flag=checkIfEmployeeExistByName(name);
+		if(flag) {
+			for(employeeAddress ea:employeeInfosWithAdress) {
+				if(name.equals(ea.getName())) return ea;
+			}
+		}
+		return null;
+}
 	
 	public void sortEmployeeById() {
 		Comparator<employeeAddress> sortById=Comparator.comparingInt(employeeAddress::getId);
