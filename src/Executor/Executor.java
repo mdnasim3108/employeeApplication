@@ -17,12 +17,18 @@ public class Executor {
     String flag=null;
     
     
-    
+    //object for classes
     EmployeeService emp=new EmployeeService();
     UserServices user= new UserServices();
+    
+    
     employeeAddress temp2=null;
     Employee temp1=null;
+    
+    //scanner class
     Scanner input=new Scanner(System.in);
+    
+    //Temporary employees
     Employee e1=new Employee(1, "nasim", 1000, "onebill", "GCT");
 	Employee e2=new Employee(2, "nishanth", 2000, "onebill", "CIT");
 	
@@ -32,6 +38,8 @@ public class Executor {
     emp.employeeInfosWithAdress.add(ea2);
     emp.employeeInfosWithAdress.add(ea1);
     
+    
+    //if wrong input, get inputs agian 
     do{
         
 
@@ -42,10 +50,12 @@ public class Executor {
         System.out.println("Enter Password");
         String adminPassword=input.nextLine();
         
-        
+        //check for valid credentials
         selectedAdmin=user.authenticateAdmin(adminName,adminPassword);
+        
         if(selectedAdmin==null)
-        System.out.println("invalid credentials");
+        	System.out.println("invalid credentials");
+    
     }while(selectedAdmin==null);
     
     
@@ -58,7 +68,9 @@ public class Executor {
     	    System.out.println("3) View Employee by Id");
     	    System.out.println("4) All Employee");
     	    System.out.println("5)Sort Employee");
+    	    
     	    int option=Integer.parseInt(input.nextLine());
+    	   
     	    switch(option){
             case 1:
                 System.out.println("Enter Employee ID");
@@ -106,10 +118,14 @@ public class Executor {
                 String country=input.nextLine();
 
                 System.out.println("Enter Employee PinCode");
-                int pincode=Integer.parseInt(input.nextLine());
-
+                String pincode=input.nextLine();
+                if(pincode.length()!=6) {
+                	System.out.println("Enter a six digit number");
+                	break;
+                }
+                                                        
                 Employee emp1 = new Employee(empID, empName, empSalary, empCurrentCompany, empPrevCompany);
-                employeeAddress empadd=new employeeAddress(emp1, doorNo, city, street, country, state, country);
+                employeeAddress empadd=new employeeAddress(emp1, doorNo, city, street, country, state, pincode);
 
                 emp.addEmployeeWithAdress(empadd);
                 break;
@@ -122,10 +138,10 @@ public class Executor {
                 
                 System.out.println("select the field to be updated");
         	    System.out.println("1)Salary");
-        	    System.out.println("2)Age");
-        	    System.out.println("3)Cureent company");
-        	    System.out.println("4) prev company");
-        	    System.out.println("5)Adress update");
+        	    
+        	    System.out.println("2)Cureent company");
+        	    System.out.println("3) prev company");
+        	    System.out.println("4)Adress update");
                 
         	    int opt=Integer.parseInt(input.nextLine());
         	    switch(opt) {
@@ -136,15 +152,10 @@ public class Executor {
 	                employee1.setSalary(eSalary);
 	                break;
 	            
-        	    case 2:
-        	    	System.out.println("Enter Employee age");
-	                int eage=Integer.parseInt(input.nextLine());
-	                Employee employee2 = emp.viewEmployee(id);
-	                employee2.setSalary(eage);
-	                break;    
+        	    
         	    
 	                
-        	    case 3:
+        	    case 2:
         	    	System.out.println("Enter Employee current company");
 	                String eCurCompany=input.nextLine();
 	                Employee employee3 = emp.viewEmployee(id);
@@ -152,14 +163,14 @@ public class Executor {
 	                break;
         	    
         	    
-            	case 4:
+            	case 3:
     	    	System.out.println("Enter Employee prev company");
                 String eprevCompany=input.nextLine();
                 Employee employee4 = emp.viewEmployee(id);
                 employee4.setCurrCompany(eprevCompany);
                 break;
                 
-            	case 5:
+            	case 4:
             		System.out.println("1)door no");
             		System.out.println("2)street");
             		System.out.println("3)state");
@@ -235,9 +246,20 @@ public class Executor {
             	System.out.println("ether the employee id");
             	int empId=Integer.parseInt(input.nextLine());
             	employeeAddress ea=emp.viewEmployee(empId);
-            	if(ea!=null)
-                	System.out.println(ea.toString());
-                	else
+            	if(ea!=null) {
+            		System.out.println("name "+ea.getName());
+    				System.out.println("id: "+ea.getId());
+    				System.out.println("salary :"+ea.getSalary());
+    				System.out.println("company :"+ea.getCurrCompany());
+    				System.out.println("previous company: "+ea.getPrevCompany());
+    				System.out.println("doorno: "+ea.getDoorNo());
+    				System.out.println("Street: "+ea.getStreet());
+    				System.out.println("State: "+ea.getState());
+    				System.out.println("City "+ea.getCity());
+    				System.out.println("Country "+ea.getCountry());
+    				System.out.println("Pincode "+ea.getPincode());
+            	}
+    			else
                 		System.out.println("Employe does not exist");
             	
                 break;

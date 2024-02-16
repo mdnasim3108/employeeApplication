@@ -29,9 +29,26 @@ public class EmployeeService {
 	
 
 	public  void showEmployees(){
-		for(employeeAddress emp:employeeInfosWithAdress) 
-		System.out.println(emp.toString());
+		int i=1;
+		for(employeeAddress emp:employeeInfosWithAdress) {
+			System.out.println(i++ +")");
+			System.out.println("name "+emp.getName());
+			System.out.println("id: "+emp.getId());
+			System.out.println("salary :"+emp.getSalary());
+			System.out.println("company :"+emp.getCurrCompany());
+			System.out.println("previous company: "+emp.getPrevCompany());
+			System.out.println("doorno: "+emp.getDoorNo());
+			System.out.println("Street: "+emp.getStreet());
+			System.out.println("State: "+emp.getState());
+			System.out.println("City "+emp.getCity());
+			System.out.println("Country "+emp.getCountry());
+			System.out.println("Pincode "+emp.getPincode());
+			
+		}
+		
+		
 	}
+	
 	
 	
 	
